@@ -1,3 +1,17 @@
 {
-    "firstName": "Ayush"
-}
+    "firstName": "Ayush",
+    "lastName": "Chand",
+    "email": "aayushchand900@gmail.com",
+    
+    "country": "India",
+    "companyName": "Veersa Technologies",
+    "address" : "221B Baker's Street",
+    "address2" : "220B Baker's street",
+    "state": "New Delhi",
+    "city": "New Delhi",
+    "zipCode": "110058",
+    "mobileNumber": "7827660564",
+    "date": "7",
+    "month": "December",
+    "year": "2002"
+ }
