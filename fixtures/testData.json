@@ -13,5 +13,9 @@
     "mobileNumber": "7827660564",
     "date": "7",
     "month": "December",
-    "year": "2002"
+    "year": "2002",
+
+
+    "wrongEmail": "wrongEmail@gmail.com",
+    "wrongPassword": "WrongPassword@123"
  }
