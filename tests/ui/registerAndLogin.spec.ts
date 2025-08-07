@@ -20,3 +20,11 @@ test('TC-03: Login with invalid credentials ', async({page})=>{
     await loginPage.navigateToUrl();
     await loginPage.loginWithIncorrectCredentials();
 });
+
+test('TC-04: Logout', async({page})=>{
+    const loginpage = new LoginPage(page);
+    await loginpage.navigateToUrl();
+    await loginpage.login();
+    await loginpage.logout();
+
+})

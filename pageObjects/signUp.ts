@@ -1,6 +1,7 @@
-import { Page, Locator, expect } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test'
 import testData from '../fixtures/testData.json'
-import * as dotenv from 'dotenv';
+import { faker } from '@faker-js/faker'
+import * as dotenv from 'dotenv'
 
 dotenv.config();
 
@@ -101,12 +102,15 @@ export class SignUp {
   }
 
   async signUp() {
-    const name = process.env.ADMIN_NAME;
-    const email = process.env.ADMIN_EMAIL;
+    // const name = process.env.ADMIN_NAME;
+    // const email = process.env.ADMIN_EMAIL;
     const password = process.env.PASSWORD;
 
-    if (!name || !email) throw new Error("ADMIN_NAME or ADMIN_EMAIL not set in .env");
+    // if (!name || !email) throw new Error("ADMIN_NAME or ADMIN_EMAIL not set in .env");
     if(!password) throw new Error("Password not set in .env file");
+
+    const name = faker.person.fullName();
+    const email = faker.internet.email();
 
     await this.signUpLoginOption.click();
     await expect(this.siteLogo).toBeVisible();

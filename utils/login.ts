@@ -20,6 +20,7 @@ export class LoginPage {
   readonly deleteAccountButton: Locator
   readonly deleteAccountHeading: Locator
   readonly deleteContinueButton: Locator
+  readonly logoutButton: Locator
 
   constructor(page: Page) {
     this.page = page;
@@ -36,6 +37,7 @@ export class LoginPage {
     this.deleteAccountButton = page.locator(".fa-trash-o")
     this.deleteContinueButton = page.locator("[data-qa=continue-button]")
     this.invalidCredsErrorMessage = page.getByText("Your email or password is incorrect!")
+    this.logoutButton = page.getByRole('link', {name:" Logout"});
    
   }
 
@@ -81,5 +83,12 @@ export class LoginPage {
     await this.deleteAccountButton.click()
     await expect(this.deleteAccountHeading).toContainText("Account Deleted!")
     await this.deleteContinueButton.click();
+  }
+
+  async logout(){
+    await this.logoutButton.click();
+    await expect(this.siteLogo).toBeVisible();
+    await expect(this.loginText).toBeVisible();
+    await expect(this.signUpText).toBeVisible();
   }
 }
