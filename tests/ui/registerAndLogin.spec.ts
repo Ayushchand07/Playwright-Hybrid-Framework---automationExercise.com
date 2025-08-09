@@ -1,6 +1,7 @@
-import{test, expect, Page, Locator} from '@playwright/test'
+import{test} from '@playwright/test'
 import { SignUp } from '../../pageObjects/signUp'
 import { LoginPage } from '../../utils/login';
+import { ContactUsPage } from '../../pageObjects/contactUs';
 
 test('TC-01: Register new user and Delete it', async({page})=>{
     const signUpPage = new SignUp(page);
@@ -26,5 +27,16 @@ test('TC-04: Logout', async({page})=>{
     await loginpage.navigateToUrl();
     await loginpage.login();
     await loginpage.logout();
+});
 
+test('TC-05: Register using existing Email', async({page})=>{
+    const signUppage = new SignUp(page);
+    await signUppage.navigateToUrl();
+    await signUppage.signUpusingExistingMail();
+})
+
+test('TC-06: Contact Us Form', async({page})=>{
+    const contactPage = new ContactUsPage(page);
+    await contactPage.navigateToUrl();
+    await contactPage.contactUsForm();
 })

@@ -37,6 +37,8 @@ export class SignUp {
   readonly mobileNumberField: Locator
   readonly createAccountButton: Locator
 
+  readonly userAlreadyREgisteredMessage: Locator
+
   //account created
   readonly accoundCreatedHeading: Locator
   readonly congratulationMessage: Locator
@@ -90,6 +92,8 @@ export class SignUp {
     this.deleteAccountHeading = page.locator("[data-qa=account-deleted]")
     this.deleteAccountButton = page.locator(".fa-trash-o")
     this.deleteContinueButton = page.locator("[data-qa=continue-button]")
+
+    this.userAlreadyREgisteredMessage = page.getByText("Email Address already exist!")
    
   }
 
@@ -157,5 +161,18 @@ export class SignUp {
     await this.deleteAccountButton.click()
     await expect(this.deleteAccountHeading).toContainText("Account Deleted!")
     await this.deleteContinueButton.click();
+  }
+
+  async signUpusingExistingMail(){
+    await this.signUpLoginOption.click();
+    await expect(this.siteLogo).toBeVisible();
+    await expect(this.loginText).toBeVisible();
+    await expect(this.signUpText).toBeVisible();
+
+    await this.signUpName.fill(testData.firstName);
+    await this.signUpEmail.fill(testData.email);
+    await this.signUpButton.click();
+    await expect(this.userAlreadyREgisteredMessage).toBeVisible()
+
   }
 }

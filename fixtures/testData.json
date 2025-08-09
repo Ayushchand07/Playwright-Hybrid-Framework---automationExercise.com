@@ -17,5 +17,8 @@
 
 
     "wrongEmail": "wrongEmail@gmail.com",
-    "wrongPassword": "WrongPassword@123"
+    "wrongPassword": "WrongPassword@123",
+
+    "contactFormMessage" : "This  is my message - HELLO 123",
+    "contactFormSubject" : "This is subject"
  }
