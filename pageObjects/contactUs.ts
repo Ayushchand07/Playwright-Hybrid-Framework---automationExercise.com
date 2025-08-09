@@ -32,7 +32,8 @@ export class ContactUsPage extends LoginPage{
     this.chooseFileButton = page.locator('input[type="file"]')
     this.submitButton = page.locator('[data-qa="submit-button"]')
     this.submissionSuccessMessage = page.locator('.alert-success')
-    this.homeButton = page.getByRole('link', {name: 'Home' })
+    this.homeButton = page.locator('#form-section').getByRole('link', { name: 'Home' })
+
     this.testCasesButton = page.getByRole('button', {name: 'Test Cases' })
 }
 
