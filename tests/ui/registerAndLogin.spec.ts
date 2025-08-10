@@ -2,6 +2,7 @@ import{test} from '@playwright/test'
 import { SignUp } from '../../pageObjects/signUp'
 import { LoginPage } from '../../utils/login';
 import { ContactUsPage } from '../../pageObjects/contactUs';
+import { TestcasesPage } from '../../pageObjects/testCases';
 
 test('TC-01: Register new user and Delete it', async({page})=>{
     const signUpPage = new SignUp(page);

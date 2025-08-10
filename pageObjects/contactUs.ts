@@ -60,6 +60,7 @@ async contactUsForm(){
     await this.handleConfirmation(true);
     await this.submitButton.click()
     //await expect(this.submissionSuccessMessage).toBeVisible()
+    await this.homeButton.waitFor({ state: 'visible' });
     await this.homeButton.click()
     await expect(this.testCasesButton).toBeVisible()
 }
