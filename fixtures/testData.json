@@ -20,5 +20,9 @@
     "wrongPassword": "WrongPassword@123",
 
     "contactFormMessage" : "This  is my message - HELLO 123",
-    "contactFormSubject" : "This is subject"
+    "contactFormSubject" : "This is subject",
+
+    "productName" : "Blue Top"
+
+
  }

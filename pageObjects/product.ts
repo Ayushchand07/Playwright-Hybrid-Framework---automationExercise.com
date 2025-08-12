@@ -17,6 +17,8 @@ export class Productpage{
     readonly productDetailsPagePrice: Locator
     readonly productDetailsPageAddToCartButton: Locator
 
+    readonly searchedProductHeading: Locator
+
  constructor(page: Page){
     this.page = page
     this.productsOption = page.getByRole('link', {name: 'Products'})
@@ -32,6 +34,7 @@ export class Productpage{
     this.productDetailsPageName = page.locator('.product-information h2')
     this.productDetailsPagePrice = page.locator('.product-information span span')
     this.productDetailsPageAddToCartButton = page.getByRole('button', {name: 'Add to Cart'})
+    this.searchedProductHeading = page.getByText("Searched Product") 
 
  }   
 
@@ -55,4 +58,14 @@ export class Productpage{
     await expect(productPagePrice).toBe(productPrice)
     await expect(this.productDetailsPageAddToCartButton).toBeVisible()
   }  
+
+  async searchProduct(productToBeSearched: string){
+   await this.productsOption.click()
+   await this.searchBarProduct.fill(productToBeSearched);
+   await this.searchButton.click()
+   await expect(this.searchedProductHeading).toBeVisible()
+   const productName = (await this.productName.textContent())?.trim() || '';
+   await expect(productName).toBe(productToBeSearched)
+
+  }
 }
