@@ -42,12 +42,20 @@ export class LoginPage {
   }
 
   async navigateToUrl() {
-    const url = process.env.SITE_URL;
-    if (!url){
-        throw new Error("SITE_URL is not defined in .env");
-    }
-    await this.page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 });
+  const url = process.env.SITE_URL;
+  if (!url) {
+    throw new Error("SITE_URL is not defined in .env");
   }
+
+  await this.page.goto(url, {
+    waitUntil: 'networkidle',   // safer than domcontentloaded
+    timeout: 30000              // give it more breathing room
+  });
+
+  // ensure page is stable by waiting for a key element
+  await this.page.waitForSelector('a[href="/login"]', { timeout: 10000 });
+}
+
 
   async login() {
     const name = process.env.ADMIN_NAME;
