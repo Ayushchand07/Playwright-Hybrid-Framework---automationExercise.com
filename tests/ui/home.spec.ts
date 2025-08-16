@@ -9,5 +9,11 @@ test.beforeEach('login',async({page})=>{
 
 test('TC-10: Verify Subscription in home page', async({page}) => {
     const homePage = new HomePage(page)
-    homePage.verifySubscription();
+    await homePage.verifySubscription();
+})
+
+test('TC-11: Verify Subscription in Cart page', async({page}) => {
+    const homePage = new HomePage(page)
+    await homePage.navigateToCart()
+    await homePage.verifySubscription();
 })
