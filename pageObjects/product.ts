@@ -1,5 +1,7 @@
 import {expect, Locator, Page} from 'playwright/test'
 
+type Product = { name: string; productId: number };
+
 export class Productpage{
 
     readonly page: Page
@@ -19,6 +21,15 @@ export class Productpage{
 
     readonly searchedProductHeading: Locator
 
+    readonly addToCartButton: Locator
+
+    readonly continueShoppingButton: Locator
+
+    readonly viewCartOption: Locator
+
+    readonly cartOption: Locator
+
+
  constructor(page: Page){
     this.page = page
     this.productsOption = page.getByRole('link', {name: 'Products'})
@@ -36,7 +47,45 @@ export class Productpage{
     this.productDetailsPageAddToCartButton = page.getByRole('button', {name: 'Add to Cart'})
     this.searchedProductHeading = page.getByText("Searched Product") 
 
- }   
+    this.continueShoppingButton = page.getByRole('button', {name: 'Continue Shopping'})
+
+    this.cartOption = page.getByRole('link', {name: 'Cart'})
+    this.viewCartOption = page.getByRole('link', {name: 'View Cart'})
+
+ }  
+ 
+ async navigateToProductPage(){
+   await this.productsOption.click()
+ }
+
+ async navigateToCart(){
+   await this.cartOption.click()
+ }
+
+
+
+
+async addProductToCart(productlist: Product[]) {
+
+   for (const product of productlist){
+      await this.searchBarProduct.fill(product.name)
+      await this.searchButton.click();
+      await expect(this.searchedProductHeading).toBeVisible();
+      const productName = (await this.productName.textContent())?.trim() || '';
+      expect(productName).toBe(product.name);
+      const addToCartButton = this.page.locator(`[data-product-id="${product.productId}"]`).first();
+
+      await expect(addToCartButton).toBeVisible()
+      await addToCartButton.click();
+   }
+   
+   await this.cartOption.click()
+
+   for(const product of productlist){
+      const row = this.page.locator(`#product-${product.productId}`)
+      await expect(row).toContainText(product.name)
+   }
+  }
 
  async productsPageValidation(){
     await this.productsOption.click()
@@ -64,8 +113,13 @@ export class Productpage{
    await this.searchBarProduct.fill(productToBeSearched);
    await this.searchButton.click()
    await expect(this.searchedProductHeading).toBeVisible()
-   const productName = (await this.productName.textContent())?.trim() || '';
-   await expect(productName).toBe(productToBeSearched)
+  }
 
+  async clickContinueShoppingButton(){
+   await this.continueShoppingButton.click()
+  }
+
+  async clickOnViewCareButton(){
+   await this.viewCartOption.click()
   }
 }

@@ -12,6 +12,7 @@ export class HomePage{
     
     readonly cartOption: Locator
     readonly shoppingCartText: Locator
+    readonly productsOption: Locator
 
     constructor(page: Page){
         this.page = page;
@@ -21,11 +22,16 @@ export class HomePage{
         this.subcriptionSuccessToaster = page.getByText("You have been successfully subscribed!")
         this.cartOption = page.getByRole('link', {name: ' Cart'})
         this.shoppingCartText = page.getByText("Shopping Cart")
+        this.productsOption = page.getByRole('link', {name: 'Products'})
     }
 
     async navigateToCart(){
         await this.cartOption.click()
         await expect(this.shoppingCartText).toBeVisible({timeout:5000})
+    }
+
+     async navigateToProductPage(){
+        await this.productsOption.click()
     }
     async verifySubscription(){
         await this.subscriptionHeading.scrollIntoViewIfNeeded()

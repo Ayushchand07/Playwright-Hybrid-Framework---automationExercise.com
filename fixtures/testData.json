@@ -22,7 +22,11 @@
     "contactFormMessage" : "This  is my message - HELLO 123",
     "contactFormSubject" : "This is subject",
 
-    "productName" : "Blue Top"
+    "productName" : "Blue Top",
+    "productName2" : "Men Tshirt",
+
+    "productList" : [{ "name": "Blue Top", "productId": 1 },{ "name": "Men Tshirt", "productId": 2 },{ "name": "Winter Top", "productId": 5 }]
+    
 
 
  }

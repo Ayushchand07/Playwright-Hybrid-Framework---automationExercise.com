@@ -18,3 +18,9 @@ test('TC-09: Search Product', async({page})=>{
     await productPage.searchProduct(testData.productName);
 })
 
+test('TC-12: Add Products in Cart', async({page})=>{
+    const productPage = new Productpage(page);
+    await productPage.navigateToProductPage()
+    await productPage.addProductToCart(testData.productList)
+})
+
