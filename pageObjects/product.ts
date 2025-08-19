@@ -1,6 +1,7 @@
 import {expect, Locator, Page} from 'playwright/test'
 
 type Product = { name: string; productId: number };
+type ProductQty = {name: string; productId: number; qty: string}
 
 export class Productpage{
 
@@ -22,12 +23,10 @@ export class Productpage{
     readonly searchedProductHeading: Locator
 
     readonly addToCartButton: Locator
-
     readonly continueShoppingButton: Locator
-
     readonly viewCartOption: Locator
-
     readonly cartOption: Locator
+    readonly quantityField : Locator
 
 
  constructor(page: Page){
@@ -51,6 +50,7 @@ export class Productpage{
 
     this.cartOption = page.getByRole('link', {name: 'Cart'})
     this.viewCartOption = page.getByRole('link', {name: 'View Cart'})
+    this.quantityField = page.locator('#quantity')
 
  }  
  
@@ -61,9 +61,6 @@ export class Productpage{
  async navigateToCart(){
    await this.cartOption.click()
  }
-
-
-
 
 async addProductToCart(productlist: Product[]) {
 
@@ -78,7 +75,6 @@ async addProductToCart(productlist: Product[]) {
       await expect(addToCartButton).toBeVisible()
       await addToCartButton.click();
    }
-   
    await this.cartOption.click()
 
    for(const product of productlist){
@@ -86,6 +82,36 @@ async addProductToCart(productlist: Product[]) {
       await expect(row).toContainText(product.name)
    }
   }
+
+async addMultipleQty(productQtyList: ProductQty[]){
+   for (const product of productQtyList){
+      await this.searchBarProduct.fill(product.name)
+      await this.searchButton.click();
+      await this.viewProductButton.click();
+      await this.quantityField.fill(product.qty)
+      await this.productDetailsPageAddToCartButton.click()
+      await this.continueShoppingButton.click()
+      await this.productsOption.click()      
+   }
+   await this.cartOption.click()
+
+   for(const product of productQtyList){
+      const quantityColumn = this.page.locator(`#product-${product.productId} .cart_quantity`)
+      await expect(quantityColumn).toHaveText(product.qty)
+   }
+
+}  
+
+async removeProductsFromCart(products: Product[]){
+   for(const product of products){
+      const rowCrossIcon = this.page.locator(`[data-product-id="${product.productId}"]`)
+      await rowCrossIcon.click()
+
+      const row = this.page.locator(`#product-${product.productId}`)
+      await expect(row).not.toBeVisible();     
+   }
+
+}
 
  async productsPageValidation(){
     await this.productsOption.click()

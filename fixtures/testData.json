@@ -25,8 +25,15 @@
     "productName" : "Blue Top",
     "productName2" : "Men Tshirt",
 
-    "productList" : [{ "name": "Blue Top", "productId": 1 },{ "name": "Men Tshirt", "productId": 2 },{ "name": "Winter Top", "productId": 5 }]
-    
+    "productList" : [{ "name": "Blue Top", "productId": 1 },{ "name": "Men Tshirt", "productId": 2 },{ "name": "Winter Top", "productId": 5 }],
+    "productQtyList" : [{ "name": "Blue Top", "productId": 1, "qty": "1" },{ "name": "Men Tshirt", "productId": 2, "qty": "3" },{ "name": "Winter Top", "productId": 5, "qty": "3" }],
 
+
+    "nameOnCard" : "Ayush Chand",
+    "cardNumber" : "895426975416",
+    "expiryMonth": "12",
+    "cvc" : "345",
+    "expiryYear": "2030"
+    
 
  }

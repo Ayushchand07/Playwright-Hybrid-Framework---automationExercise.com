@@ -46,7 +46,7 @@ export class LoginPage {
     if (!url){
         throw new Error("SITE_URL is not defined in .env");
     }
-    await this.page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
+    await this.page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
   }
 
   async login() {
