@@ -53,3 +53,9 @@ test('TC-16: Place Order: Login before Checkout', async({page})=>{
     await cartPage.placeOrder()
 })
 
+test('TC-21: Add review on product', async({page})=>{
+    const productPage = new Productpage(page);
+    await productPage.navigateToProductPage()
+    await productPage.writeReviewOnProduct(testData.productName,testData.firstName, testData.email, testData.reviewMessage )
+})
+

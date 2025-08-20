@@ -20,6 +20,7 @@ export class CartPage extends LoginPage{
     readonly payAndCofirmOrderButton: Locator
     readonly orderPlacedHeading: Locator
     readonly orderPlacedMessage: Locator
+    readonly downloadInvoiceButton: Locator
 
 constructor(page: Page){
     super(page)
@@ -40,6 +41,7 @@ constructor(page: Page){
     this.payAndCofirmOrderButton = page.locator('[data-qa="pay-button"]')
     this.orderPlacedHeading = page.locator('[data-qa="order-placed"]')
     this.orderPlacedMessage = page.getByText("Congratulations! Your order has been confirmed!")
+    this.downloadInvoiceButton = page.getByRole('button', {name: "Download Invoice"})
 
 }
 
@@ -71,6 +73,8 @@ async placeOrder(){
     await this.expiryYear.fill(testData.expiryYear)
     await this.payAndCofirmOrderButton.click()
     await expect(this.orderPlacedHeading).toBeVisible()
-    await expect(this.orderPlacedMessage).toBeVisible()    
+    await expect(this.orderPlacedMessage).toBeVisible()
+    await this.downloadInvoiceButton.click()
+        
 }
 }

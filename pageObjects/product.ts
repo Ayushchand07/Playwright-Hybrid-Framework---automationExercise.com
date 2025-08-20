@@ -28,6 +28,12 @@ export class Productpage{
     readonly cartOption: Locator
     readonly quantityField : Locator
 
+    readonly nameField : Locator
+    readonly emailField : Locator
+    readonly reviewField : Locator
+    readonly submitButton : Locator 
+    readonly reviewSuccessMessage: Locator 
+
 
  constructor(page: Page){
     this.page = page
@@ -51,6 +57,12 @@ export class Productpage{
     this.cartOption = page.getByRole('link', {name: 'Cart'})
     this.viewCartOption = page.getByRole('link', {name: 'View Cart'})
     this.quantityField = page.locator('#quantity')
+
+    this.nameField = page.locator('#name')
+    this.emailField = page.locator('#email')
+    this.reviewField = page.locator('#review-form textarea')
+    this.submitButton = page.locator('#button-review')
+    this.reviewSuccessMessage = page.getByText('Thank you for your review.')
 
  }  
  
@@ -133,6 +145,19 @@ async removeProductsFromCart(products: Product[]){
     await expect(productPagePrice).toBe(productPrice)
     await expect(this.productDetailsPageAddToCartButton).toBeVisible()
   }  
+
+  async writeReviewOnProduct(productName: string, customerName: string,customerEmail: string, reviewMessage: string ){
+   await this.productsOption.click()
+   await this.searchBarProduct.fill(productName);
+   await this.searchButton.click()
+   await this.viewProductButton.click()
+   await this.nameField.fill(customerName);
+   await this.emailField.fill(customerEmail);
+   await this.reviewField.fill(reviewMessage);
+   await this.submitButton.click()
+   await expect(this.reviewSuccessMessage).toBeVisible()
+
+  }
 
   async searchProduct(productToBeSearched: string){
    await this.productsOption.click()
