@@ -1,6 +1,6 @@
 import { Locator, Page, expect, } from "playwright/test"
-import testData from "../fixtures/testData.json"
-import { LoginPage } from "../utils/login"
+import testData from "../../fixtures/testData.json"
+import { LoginPage } from "../../utils/login"
 
 
 export class HomePage extends LoginPage{

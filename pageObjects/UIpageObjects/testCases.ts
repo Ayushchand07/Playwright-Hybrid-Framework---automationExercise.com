@@ -1,6 +1,6 @@
 import{Page, Locator, expect} from 'playwright/test'
 import * as dotenv from 'dotenv'
-import { LoginPage } from '../utils/login';
+import { LoginPage } from '../../utils/login';
 
 export class TestcasesPage extends LoginPage{
 

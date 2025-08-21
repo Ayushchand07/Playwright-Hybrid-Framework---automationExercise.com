@@ -1,8 +1,8 @@
 import{test} from '@playwright/test'
-import { Productpage } from '../../pageObjects/product';
+import { Productpage } from '../../pageObjects/UIpageObjects/product';
 import { LoginPage } from '../../utils/login';
 import testData from '../../fixtures/testData.json'
-import { CartPage } from '../../pageObjects/cart';
+import { CartPage } from '../../pageObjects/UIpageObjects/cart';
 
 test.beforeEach("login", async({page})=>{
     const loginPage = new LoginPage(page)

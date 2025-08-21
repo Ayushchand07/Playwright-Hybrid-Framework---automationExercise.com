@@ -1,5 +1,5 @@
 import { Page, Locator, expect } from '@playwright/test'
-import testData from '../fixtures/testData.json'
+import testData from '../../fixtures/testData.json'
 import { faker } from '@faker-js/faker'
 import * as dotenv from 'dotenv'
 

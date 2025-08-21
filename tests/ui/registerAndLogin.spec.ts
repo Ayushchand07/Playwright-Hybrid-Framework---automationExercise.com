@@ -1,7 +1,7 @@
 import{test} from '@playwright/test'
-import { SignUp } from '../../pageObjects/signUp'
+import { SignUp } from '../../pageObjects/UIpageObjects/signUp'
 import { LoginPage } from '../../utils/login';
-import { ContactUsPage } from '../../pageObjects/contactUs';
+import { ContactUsPage } from '../../pageObjects/UIpageObjects/contactUs';
 
 test('TC-01: Register new user and Delete it', async({page})=>{
     const signUpPage = new SignUp(page);
