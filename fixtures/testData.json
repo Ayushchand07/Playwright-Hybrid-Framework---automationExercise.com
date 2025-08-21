@@ -36,6 +36,9 @@
     "expiryYear": "2030",
     
 
-    "reviewMessage": "Great product!!"
+    "reviewMessage": "Great product!!",
+
+    "productcategory": "Dress",
+    "categoryName": "Women"
 
  }

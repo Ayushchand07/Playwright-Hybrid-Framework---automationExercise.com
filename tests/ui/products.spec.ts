@@ -59,3 +59,8 @@ test('TC-21: Add review on product', async({page})=>{
     await productPage.writeReviewOnProduct(testData.productName,testData.firstName, testData.email, testData.reviewMessage )
 })
 
+test('TC-18: View Category Products', async({page})=>{
+    const productPage = new Productpage(page);
+    await productPage.navigateToCategory(testData.categoryName, testData.productcategory )
+})
+

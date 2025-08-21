@@ -34,6 +34,12 @@ export class Productpage{
     readonly submitButton : Locator 
     readonly reviewSuccessMessage: Locator 
 
+    //Category
+    readonly categoryHeading : Locator
+    readonly categoryListBox : Locator
+    readonly 
+
+
 
  constructor(page: Page){
     this.page = page
@@ -64,7 +70,24 @@ export class Productpage{
     this.submitButton = page.locator('#button-review')
     this.reviewSuccessMessage = page.getByText('Thank you for your review.')
 
+    this.categoryListBox = page.locator('#accordian')
+
  }  
+
+ async navigateToCategory(categoryName: string, productName: string){
+   await this.navigateToProductPage()
+   await expect(this.categoryListBox).toBeVisible()
+
+   const category = this.page.locator('#accordian').getByText(`${categoryName}`)
+   await category.click()
+
+   const product = this.page.locator('#accordian').locator(`#${categoryName}`).getByText(`${productName}`)
+   await product.click()
+
+   const categoryProductHeading = this.page.getByText(`${categoryName} - ${productName} Products`)
+   await expect(categoryProductHeading).toBeVisible()
+   
+ }
  
  async navigateToProductPage(){
    await this.productsOption.click()
@@ -156,7 +179,6 @@ async removeProductsFromCart(products: Product[]){
    await this.reviewField.fill(reviewMessage);
    await this.submitButton.click()
    await expect(this.reviewSuccessMessage).toBeVisible()
-
   }
 
   async searchProduct(productToBeSearched: string){
