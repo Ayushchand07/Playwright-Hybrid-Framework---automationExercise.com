@@ -1,4 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
+import { APIClient } from './utils/api/apiClient';
+import { endpoints } from './fixtures/endPoints';
 
 /**
  * Read environment variables from file.
@@ -34,6 +36,13 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+     {
+      name: 'API',
+      //testMatch: /.*\.spec\.ts/,  // Only run API tests with .api.ts suffix
+      use: {
+        baseURL: endpoints.BASE_URL
+      },
+    },
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
