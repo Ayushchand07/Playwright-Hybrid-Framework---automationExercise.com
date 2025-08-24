@@ -1,5 +1,5 @@
 import { Locator, Page, expect, } from "playwright/test"
-import testData from "../../fixtures/testData.json"
+import testData from '../../testData/uiTestData/testData.json'
 import { LoginPage } from "../../utils/login"
 
 

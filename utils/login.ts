@@ -1,5 +1,5 @@
 import { Page, Locator, expect } from '@playwright/test';
-import testData from '../fixtures/testData.json'
+import testData from '../testData/uiTestData/testData.json'
 import * as dotenv from 'dotenv';
 
 dotenv.config();

@@ -1,6 +1,6 @@
 import { Locator, expect, Page } from "playwright/test";
 import { LoginPage } from "../../utils/login";
-import testData from "../../fixtures/testData.json"
+import testData from "../../testData/uiTestData/testData.json";
 
 export class CartPage extends LoginPage{
     readonly proceddToCheckoutButton: Locator

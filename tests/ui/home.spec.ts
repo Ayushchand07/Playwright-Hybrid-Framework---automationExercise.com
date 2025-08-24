@@ -3,7 +3,7 @@ import { HomePage } from '../../pageObjects/UIpageObjects/homePage'
 import { LoginPage } from '../../utils/login'
 import { Productpage } from '../../pageObjects/UIpageObjects/product'
 import { CartPage } from '../../pageObjects/UIpageObjects/cart'
-import testData from '../../fixtures/testData.json'
+import testData from '../../testData/uiTestData/testData.json'
 
 test.beforeEach('login',async({page})=>{
     const loginPage = new LoginPage(page)
