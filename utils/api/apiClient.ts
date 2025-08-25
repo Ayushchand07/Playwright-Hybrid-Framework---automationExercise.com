@@ -26,23 +26,26 @@ export class APIClient {
 
   }
 
-  async validateStatusCode(response, expectedStatusCode){
-    expect(response.status()).toBe(expectedStatusCode);
+  async getAllBrands(){
+    return await this.apiContext.get(endpoints.GET_BRANDS);
   }
 
-  async validateResponseBody(response, expectedResponseBody){
-    const responseBody = await response.json();
-    expect(responseBody).toEqual(expectedResponseBody);
+  async putAllBrands(){
+    return await this.apiContext.put(endpoints.GET_BRANDS)
   }
 
-  async validateSchema(response, expectedSchema){
-    const responseBody = await response.json();
-    const ajv = new Ajv();
-    const validate = ajv.compile(expectedSchema);
-    const isValid = validate(responseBody)
-
-    await expect(isValid).toBeTruthy()
+  async postLogin(){
+    return await this.apiContext.post(endpoints.LOGIN, /*params*/)
   }
+
+  async postLoginInWithoutEmail(){
+    return await this.apiContext.post(endpoints.LOGIN)
+  }
+
+  async deleteLogin(){
+    return await this.apiContext.delete(endpoints.LOGIN)
+  }
+
 
   async validatePerformance(){
 
@@ -50,11 +53,6 @@ export class APIClient {
 
   async postAllProducts(){
     return await this.apiContext.post(endpoints.GET_PRODUCTS);
-  }
-
-  async validateResponseCode(response, responseCode){
-    const responseBody = await response.json();
-    expect(responseBody.responseCode).toBe(responseCode)
   }
 
   async close() {
