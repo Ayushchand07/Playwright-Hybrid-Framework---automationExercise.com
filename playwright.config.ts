@@ -36,22 +36,22 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-     {
-      name: 'API',
-      //testMatch: /.*\.spec\.ts/,  // Only run API tests with .api.ts suffix
-      use: {
-        baseURL: endpoints.BASE_URL
-      },
-    },
+    //  {
+    //   name: 'API',
+    //   //testMatch: /.*\.spec\.ts/,  // Only run API tests with .api.ts suffix
+    //   use: {
+    //     baseURL: endpoints.BASE_URL
+    //   },
+    // },
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] },
+    // },
 
     /* Test against mobile viewports. */
     // {
